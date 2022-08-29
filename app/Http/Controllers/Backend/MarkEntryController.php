@@ -1,0 +1,115 @@
+<?php
+
+namespace App\Http\Controllers\Backend;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\AcademicYear;
+use App\Models\Classes;
+use App\Models\Section;
+use App\Models\ExamName;
+use App\Models\Group;
+use App\Models\Subject;
+use App\Models\StudentMark;
+class MarkEntryController extends Controller
+{
+   public function add(){
+    $data['academicYear'] = AcademicYear::all();
+    $data['classes'] = Classes::all();
+    $data['section'] = Section::all();
+    $data['examType'] = ExamName::all();
+    $data['group'] = Group::all();
+    $data['subject'] = Subject::all();
+   // $data['courseName'] = CourseName::all();
+     return view('backend.marks.create',$data);
+   }
+
+
+   public function store(Request $request){
+    // $this->validate($request,[
+    //     'Subjective' => 'required',
+    //     'Objective' => 'required',
+    //     'ClassId' => 'required',
+
+    // ]);
+
+    $studentClassCount = $request->StudentId;
+
+     if($studentClassCount){
+       for($i=0; $i<count($request->StudentId); $i++){
+            $studentMark = new StudentMark();
+            $studentMark->AyId = $request->AyId;
+            $studentMark->ClassId = $request->ClassId;
+            $studentMark->SubjectId = $request->SubjectId;
+            $studentMark->ExampNameId = $request->ExampNameId;
+            $studentMark->StudentId = $request->StudentId[$i];
+            $studentMark->Subjective = $request->Subjective[$i];
+            $studentMark->Objective = $request->Objective[$i];
+            $studentMark->save();
+       }
+       return redirect()->route('mark-entry-show')->with('success','Data Insert successfully');
+     }
+
+
+   }
+
+   public function getStudentReport(){
+    $data['academicYear'] = AcademicYear::all();
+    $data['classes'] = Classes::all();
+    $data['section'] = Section::all();
+    $data['examType'] = ExamName::all();
+    $data['group'] = Group::all();
+    $data['subject'] = Subject::all();
+   // $data['courseName'] = CourseName::all();
+     return view('backend.report.create',$data);
+  }
+
+  public function edit(){
+    $data['academicYear'] = AcademicYear::all();
+    $data['classes'] = Classes::all();
+    $data['section'] = Section::all();
+    $data['examType'] = ExamName::all();
+    $data['group'] = Group::all();
+    $data['subject'] = Subject::all();
+   // $data['courseName'] = CourseName::all();
+     return view('backend.marks.marks_edit',$data);
+  }
+
+  public function getMarks(Request $request){
+    $AyId = $request->AyId;
+    $ClassId = $request->ClassId;
+    $SubjectId = $request->SubjectId;
+    $ExampNameId = $request->ExampNameId;
+   $allData = StudentMark::with('student','class')->where('AyId',$AyId)->where('ClassId',$ClassId)->where('SubjectId',$SubjectId)->get();
+    //    dd($allData);
+   return view('backend.marks._mark_edit',[
+           'allData' => $allData
+       ]);
+  }
+
+  public function update(Request $request){
+
+   $data =StudentMark::where('AyId',$request->AyId)->where('ClassId',$request->ClassId)->where('SubjectId',$request->SubjectId)->where('ExampNameId',$request->ExampNameId)->get();
+//    dd($data);
+   foreach($data as $item){
+            $item->delete();
+   }
+   $studentClassCount = $request->StudentId;
+    if($studentClassCount){
+        for($i=0; $i<count($request->StudentId); $i++){
+            $studentMark = new StudentMark();
+            $studentMark->AyId = $request->AyId;
+            $studentMark->ClassId = $request->ClassId;
+            $studentMark->SubjectId = $request->SubjectId;
+            $studentMark->ExampNameId = $request->ExampNameId;
+            $studentMark->StudentId = $request->StudentId[$i];
+            $studentMark->Subjective = $request->Subjective[$i];
+            $studentMark->Objective = $request->Objective[$i];
+          //  dd($studentMark);
+            $studentMark->save();
+        }
+
+        return redirect()->route('marks.edit')->with('success','Data Update successfully');
+      }
+  }
+}
