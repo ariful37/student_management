@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2022 at 12:50 PM
+-- Generation Time: Sep 03, 2022 at 04:21 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -39,7 +39,7 @@ CREATE TABLE `academic_years` (
 --
 
 INSERT INTO `academic_years` (`id`, `year`, `created_at`, `updated_at`) VALUES
-(1, '2022-2022', '2022-08-28 09:14:26', '2022-08-28 09:14:26');
+(1, '2022-2022', '2022-09-03 08:30:15', '2022-09-03 08:30:15');
 
 -- --------------------------------------------------------
 
@@ -59,8 +59,8 @@ CREATE TABLE `classes` (
 --
 
 INSERT INTO `classes` (`id`, `class_name`, `created_at`, `updated_at`) VALUES
-(1, 'V', '2022-08-28 09:14:55', '2022-08-28 09:14:55'),
-(2, 'VI', '2022-08-28 09:15:11', '2022-08-28 09:15:11');
+(1, 'V', '2022-09-03 08:30:45', NULL),
+(2, 'VI', '2022-09-03 08:30:56', '2022-09-03 08:30:56');
 
 -- --------------------------------------------------------
 
@@ -74,14 +74,6 @@ CREATE TABLE `course_names` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `course_names`
---
-
-INSERT INTO `course_names` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Bangla 1', '2022-08-28 09:15:30', '2022-08-28 09:15:30'),
-(2, 'English 1', '2022-08-28 09:15:45', '2022-08-28 09:15:45');
 
 -- --------------------------------------------------------
 
@@ -101,8 +93,8 @@ CREATE TABLE `exam_names` (
 --
 
 INSERT INTO `exam_names` (`id`, `exam_name`, `created_at`, `updated_at`) VALUES
-(1, 'First Semester ', '2022-08-28 09:16:05', '2022-08-28 09:16:05'),
-(2, '2nd Semester ', '2022-08-28 09:17:22', '2022-08-28 09:17:22');
+(1, 'half-yearly-exam-2022', '2022-09-03 08:38:16', '2022-09-03 08:38:16'),
+(2, 'final-year-exam-2022', '2022-09-03 08:39:24', '2022-09-03 08:39:24');
 
 -- --------------------------------------------------------
 
@@ -133,8 +125,8 @@ CREATE TABLE `exam_setups` (
 --
 
 INSERT INTO `exam_setups` (`id`, `AyId`, `ExampNameId`, `ClassId`, `SectionId`, `SubjectId`, `GroupId`, `subjective`, `objective`, `Practical`, `WeightedMarks`, `CreatedDate`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, 1, 1, 1, '100', '20', '0', NULL, NULL, '0', '2022-08-28 04:36:52', '2022-08-28 04:36:52'),
-(2, 1, 1, 1, 1, 1, 1, '100', '20', '0', NULL, NULL, '0', '2022-08-28 04:37:08', '2022-08-28 04:37:08');
+(1, 1, 1, 1, 1, 1, 1, '70', '20', '20', NULL, NULL, '0', '2022-09-03 02:42:48', '2022-09-03 02:42:48'),
+(2, 1, 1, 1, 1, 1, 1, '100', '20', '0', NULL, NULL, '0', '2022-09-03 06:18:02', '2022-09-03 06:18:02');
 
 -- --------------------------------------------------------
 
@@ -170,9 +162,9 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`id`, `group_name`, `created_at`, `updated_at`) VALUES
-(1, 'Sci', '2022-08-28 09:18:04', '2022-08-28 09:18:04'),
-(2, 'Hum', '2022-08-28 09:18:32', '2022-08-28 09:18:32'),
-(3, 'BSt', '2022-08-28 09:18:49', '2022-08-28 09:18:49');
+(1, 'science', '2022-09-03 08:31:52', '2022-09-03 08:31:52'),
+(2, 'Hum', '2022-09-03 08:33:05', '2022-09-03 08:33:05'),
+(3, 'BSt', '2022-09-03 08:33:27', '2022-09-03 08:33:27');
 
 -- --------------------------------------------------------
 
@@ -199,11 +191,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2022_08_26_143750_create_classes_table', 1),
 (7, '2022_08_26_143821_create_groups_table', 1),
 (8, '2022_08_26_143822_create_sections_table', 1),
+(9, '2022_08_26_175244_create_students_table', 1),
 (10, '2022_08_26_175344_create_subjects_table', 1),
 (11, '2022_08_26_180137_create_exam_names_table', 1),
 (12, '2022_08_26_180313_create_exam_setups_table', 1),
-(18, '2022_08_27_131046_create_student_marks_table', 2),
-(19, '2022_08_26_175244_create_students_table', 3);
+(13, '2022_08_27_131046_create_student_marks_table', 1);
 
 -- --------------------------------------------------------
 
@@ -235,8 +227,9 @@ CREATE TABLE `sections` (
 --
 
 INSERT INTO `sections` (`id`, `section_name`, `created_at`, `updated_at`) VALUES
-(1, 'A-Section', '2022-08-28 09:19:05', '2022-08-28 09:19:05'),
-(2, 'B-Section', '2022-08-28 09:19:22', '2022-08-28 09:19:22');
+(1, 'A-Section', '2022-09-03 08:34:26', '2022-09-03 08:34:26'),
+(2, 'B-Section', '2022-09-03 08:34:45', '2022-09-03 08:34:45'),
+(3, 'C-Scetion', '2022-09-03 08:35:02', '2022-09-03 08:35:02');
 
 -- --------------------------------------------------------
 
@@ -262,7 +255,8 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `AyId`, `ClassId`, `SectionId`, `StudentName`, `StudentCode`, `RollNo`, `SmsNumber`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, 'ariful islam', '222222', '11-11-11', '01719800437', '2022-08-29 04:35:06', '2022-08-29 04:35:06');
+(1, NULL, NULL, 1, 'Abir', '3030', '111-15-111', '01719800437', '2022-09-03 02:35:55', '2022-09-03 02:35:55'),
+(2, 1, 1, 1, 'ariful islam', '222222', '11111', '01719800437', '2022-09-03 06:23:27', '2022-09-03 06:23:27');
 
 -- --------------------------------------------------------
 
@@ -289,15 +283,8 @@ CREATE TABLE `student_marks` (
 --
 
 INSERT INTO `student_marks` (`id`, `StudentId`, `AyId`, `ClassId`, `SubjectId`, `ExampNameId`, `Subjective`, `Objective`, `Obtained`, `created_at`, `updated_at`) VALUES
-(15, 8, 1, 1, 1, 1, 55, 55, NULL, '2022-08-29 04:38:09', '2022-08-29 04:38:09'),
-(16, 9, 1, 1, 1, 1, 20, 30, NULL, '2022-08-29 04:38:09', '2022-08-29 04:38:09'),
-(17, 10, 1, 1, 1, 1, 20, 30, NULL, '2022-08-29 04:38:09', '2022-08-29 04:38:09'),
-(18, 11, 1, 1, 1, 1, 20, 30, NULL, '2022-08-29 04:38:09', '2022-08-29 04:38:09'),
-(19, 12, 1, 1, 1, 1, 40, 20, NULL, '2022-08-29 04:38:09', '2022-08-29 04:38:09'),
-(20, 13, 1, 1, 1, 1, 40, 30, NULL, '2022-08-29 04:38:09', '2022-08-29 04:38:09'),
-(21, 14, 1, 1, 1, 1, 40, 30, NULL, '2022-08-29 04:38:09', '2022-08-29 04:38:09'),
-(22, 1, 1, 1, 1, 1, 40, 20, NULL, '2022-08-29 04:39:36', '2022-08-29 04:39:36'),
-(23, 1, 1, 1, 1, 1, 30, 20, NULL, '2022-08-29 04:39:48', '2022-08-29 04:39:48');
+(5, 3, 1, 1, 1, 1, 90, 30, NULL, '2022-09-03 08:21:08', '2022-09-03 08:21:08'),
+(6, 4, 1, 1, 1, 1, 40, 30, NULL, '2022-09-03 08:21:08', '2022-09-03 08:21:08');
 
 -- --------------------------------------------------------
 
@@ -322,9 +309,10 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`id`, `AyId`, `GroupId`, `ClassId`, `SectionId`, `SubjectName`, `SubjectCode`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, 1, 'bangla 1', '505', '2022-08-28 03:23:57', '2022-08-28 03:23:57'),
-(2, 1, 2, 1, 1, 'English 1', '202', '2022-08-28 03:24:14', '2022-08-28 03:24:14'),
-(3, 1, 1, 1, 1, 'bangla 1', '1ww22', '2022-08-28 04:25:29', '2022-08-28 04:25:29');
+(1, 1, 1, 1, 1, 'bangla 1', 'b2020', '2022-09-03 02:36:21', '2022-09-03 02:36:21'),
+(2, 1, 1, 1, 2, 'English 1', '505', '2022-09-03 06:16:52', '2022-09-03 06:16:52'),
+(3, 1, 1, 1, 1, 'bangla 1', '505', '2022-09-03 06:24:17', '2022-09-03 06:24:17'),
+(4, 1, 1, 1, 1, 'English 1', '202', '2022-09-03 07:44:33', '2022-09-03 07:44:33');
 
 -- --------------------------------------------------------
 
@@ -354,7 +342,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `usertype`, `name`, `email`, `phone`, `address`, `gender`, `image`, `status`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'Ariful islam tuhin', 'admin@gmail.com', '01774266791', NULL, NULL, NULL, 0, NULL, '$2y$10$5q5egp252nmXBBiSKN8GyeKML5ckLTqR5FDolxiDdfjrUyV5X/pXS', NULL, '2022-08-28 03:14:00', '2022-08-28 03:14:00');
+(1, NULL, 'Ariful islam tuhin', 'admin@gmail.com', '01774266791', NULL, NULL, NULL, 0, NULL, '$2y$10$SAU1utNYS3yxhtA7m9E9.uWp9ZYqONNkdzp6S.u/n0KABV9K5pXNm', NULL, '2022-09-03 02:29:12', '2022-09-03 02:29:12');
 
 --
 -- Indexes for dumped tables
@@ -480,7 +468,7 @@ ALTER TABLE `classes`
 -- AUTO_INCREMENT for table `course_names`
 --
 ALTER TABLE `course_names`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `exam_names`
@@ -510,13 +498,13 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -528,13 +516,13 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `student_marks`
 --
 ALTER TABLE `student_marks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
