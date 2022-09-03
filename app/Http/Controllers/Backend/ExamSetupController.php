@@ -23,22 +23,22 @@ class ExamSetupController extends Controller
         $data['group'] = Group::all();
         $data['subject'] = Subject::all();
        // $data['courseName'] = CourseName::all();
-        $data['exam_setups'] = ExamSetup::all();
+        $data['exam_setups'] = ExamSetup::with('year','class')->get();
         return view('backend.exam.create',$data);
     }
 
 
     public function store(Request $request){
-        $this->validate($request,[
-            'subjective' => 'required',
-            'AyId' => 'required',
-            'ExampNameId' => 'required',
-            'ClassId' => 'required',
-            'SectionId' => 'required',
-            'SubjectId' => 'required',
-            'objective' => 'required',
+        // $this->validate($request,[
+        //     'subjective' => 'required',
+        //     'AyId' => 'required',
+        //     'ExampNameId' => 'required',
+        //     'ClassId' => 'required',
+        //     'SectionId' => 'required',
+        //     'SubjectId' => 'required',
+        //     'objective' => 'required',
 
-        ]);
+        // ]);
 
         $exam = new ExamSetup();
         $exam->AyId = $request->AyId;

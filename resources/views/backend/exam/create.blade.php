@@ -31,7 +31,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Manage Exam</h3>
-                <a href="{{route('product.view')}}" class="btn btn-success orange float-right btn-sm">  <i class="nav-icon fas fa-list"></i>User Product</a>
+                <a href="" class="btn btn-success orange float-right btn-sm">  <i class="nav-icon fas fa-list"></i>View Exam</a>
               </div>
             </div>
             <div class="card card-danger">
@@ -123,6 +123,54 @@
               </div>
             </form>
               <!-- /.card-body -->
+              <div class="card">
+
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Academic Year</th>
+                      <th>Exam Name</th>
+                      <th>Class Name</th>
+                      <th>Section Name</th>
+                      <th>Subject Name</th>
+                      <th>Group Name</th>
+                      <th>Subjective</th>
+                      <th>Bbjective</th>
+                      <th>Action</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                     @foreach($exam_setups as $key=>$item)
+                    <tr>
+
+
+                      <td>{{ $item->id}}</td>
+                      <td>{{ $item->year->year}}</td>
+                      <td>{{ $item->ExamName->exam_name}}</td>
+                      <td>{{ $item->class->class_name}}</td>
+                      <td>{{ $item->section->section_name}}</td>
+                      <td>{{$item->subject->SubjectName}}</td>
+                      <td>{{$item->group->group_name}}</td>
+                      <td>{{$item->subjective}}</td>
+                      <td>{{$item->objective}}</td>
+                      <td>
+                        <a href="" class="text-info" ><i class="nav-icon fas fa-edit"></i></a>
+                        <a href=""  class="text-danger"><i class="nav-icon fas fa-trash-alt"></i></a>
+                      </td>
+                    </tr>
+
+                   @endforeach
+
+                    </tfoot>
+                  </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
             </div>
               <!-- /.card-body -->
             </div>

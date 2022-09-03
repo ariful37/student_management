@@ -23,7 +23,7 @@ class ExamSetup extends Model
         'GroupId'];
 
         public function year(){
-            return $this->belongsTo(HeadAcademicYearer::class,'AyId','id');
+            return $this->belongsTo(AcademicYear::class,'AyId','id');
         }
         public function class(){
             return $this->belongsTo(Classes::class,'ClassId','id');
@@ -32,10 +32,10 @@ class ExamSetup extends Model
             return $this->belongsTo(Subject::class,'SubjectId','id');
         }
         public function ExamName(){
-            return $this->belongsTo(Subject::class,'ExampNameId','id');
+            return $this->belongsTo(ExamName::class,'ExampNameId','id');
         }
-        public function Student(){
-            return $this->belongsTo(Subject::class,'StudentId','id');
+        public function section(){
+            return $this->belongsTo(Section::class,'SectionId','id');
         }
         public function group(){
             return $this->belongsTo(Group::class,'GroupId','id');

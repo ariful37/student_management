@@ -31,6 +31,7 @@ class StudentController extends Controller
         $student->StudentCode = $request->StudentCode;
         $student->RollNo = $request->RollNo;
         $student->SmsNumber = $request->SmsNumber;
+        //dd($student);
         $student->save();
         return redirect()->route('student.create')->with('success','Data Insert successfully');
     }
