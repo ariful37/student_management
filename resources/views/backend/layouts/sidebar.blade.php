@@ -107,6 +107,18 @@
                   <p>Group</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{route('exam-name.view')}}" class="nav-link {{$route=='exam-name.view'?'active':''}}">
+                  <i class="far fa-circle nav-icon text-info"></i>
+                  <p>Exam Name</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('section.view')}}" class="nav-link {{$route=='section.view'?'active':''}}">
+                  <i class="far fa-circle nav-icon text-info"></i>
+                  <p>Section Name</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview {{$prefix == '/student'?'menu-open':''}}">

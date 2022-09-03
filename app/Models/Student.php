@@ -18,7 +18,7 @@ class Student extends Model
         'SmsNumber',
     ];
     public function year(){
-        return $this->belongsTo(AcademicYearer::class,'AyId','id');
+        return $this->belongsTo(AcademicYear::class,'AyId','id');
     }
     public function class(){
         return $this->belongsTo(Classes::class,'ClassId','id');

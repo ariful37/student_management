@@ -15,6 +15,7 @@ class StudentController extends Controller
         $data['academicYear'] = AcademicYear::all();
         $data['classes'] = Classes::all();
         $data['section'] = Section::all();
+        $data['student'] = Student::with('year')->get();
         return view('backend.student.create',$data);
     }
 

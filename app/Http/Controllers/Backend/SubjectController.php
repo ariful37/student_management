@@ -19,6 +19,7 @@ class SubjectController extends Controller
         $data['classes'] = Classes::all();
         $data['section'] = Section::all();
         $data['group'] = Group::all();
+        $data['allsubject'] = Subject::get();
         return view('backend.subject.create',$data);
     }
 
@@ -35,6 +36,7 @@ class SubjectController extends Controller
         $subject->SectionId = $request->SectionId;
         $subject->SubjectName = $request->SubjectName;
         $subject->SubjectCode = $request->SubjectCode;
+       // dd($subject);
         $subject->save();
         return redirect()->route('subject.create')->with('success','Data Insert successfully');
     }

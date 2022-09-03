@@ -109,8 +109,48 @@
               <!-- /.card-body -->
             </div>
               <!-- /.card-body -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Year Name</th>
+                    <th>Class Name</th>
+                    <th>Section Name</th>
+                    <th>Student Name</th>
+                    <th>Student Code</th>
+                    <th>Student Roll</th>
+                    <th>Student Phone number</th>
+                    <th>Action</th>
+
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                   @foreach($student as $key=>$item)
+                  <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td>{{$item->year ? $item->year->year :''}}</td>
+                    <td>{{$item->class ? $item->class->class_name : ''}}</td>
+                    <td>{{$item->section ? $item->section->section_name : ''}}</td>
+                    <td>{{$item->StudentName}}</td>
+                    <td>{{$item->StudentCode}}</td>
+                    <td>{{$item->RollNo}}</td>
+                    <td>{{$item->SmsNumber}}</td>
+                    <td>
+                      <a href="" class="text-info" ><i class="nav-icon fas fa-edit"></i></a>
+                      <a href=""  class="text-danger"><i class="nav-icon fas fa-trash-alt"></i></a>
+                    </td>
+                  </tr>
+
+                 @endforeach
+
+                  </tfoot>
+                </table>
+              </div>
             </div>
             <!-- /.card -->
+
           </div>
           <!-- /.col -->
         </div>

@@ -110,7 +110,41 @@
               <!-- /.card-body -->
             </div>
 
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Year Name</th>
+                    <th>Group Name</th>
+                    <th>Class Name</th>
+                    <th>Subject Name</th>
+                    <th>Subject Code</th>
+                    <th>Action</th>
 
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                   @foreach($allsubject as $key=>$item)
+                  <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td>{{$item->year?$item->year->year:''}}</td>
+                    <td>{{$item->group?$item->group->group_name:''}}</td>
+                    <td>{{$item->class?$item->class->class_name:''}}</td>
+                    <td>{{$item->SubjectName}}</td>
+                    <td>{{$item->SubjectCode}}</td>
+                    <td>
+                      <a href="{{route('group.edit',$item->id)}}" class="text-info" ><i class="nav-icon fas fa-edit"></i></a>
+                      <a href="{{route('group.delete',$item->id)}}"  class="text-danger"><i class="nav-icon fas fa-trash-alt"></i></a>
+                    </td>
+                  </tr>
+
+                 @endforeach
+
+                  </tfoot>
+                </table>
+              </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->

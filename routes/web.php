@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\AcademicYearController;
 use App\Http\Controllers\Backend\GroupController;
 use App\Http\Controllers\Backend\ClassesController;
 use App\Http\Controllers\Backend\SectionController;
+use App\Http\Controllers\Backend\ExamNameController;
 use App\Http\Controllers\Backend\DefaultController;
 
 /*
@@ -109,6 +110,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
         Route::get('/delete/{id}',[GroupController::class,'delete'])->name('group.delete');
 
      });
+     Route::prefix('exam-name')->group(function(){
+        Route::get('/view',[ExamNameController::class,'index'])->name('exam-name.view');
+        Route::get('/create',[ExamNameController::class,'create'])->name('exam-name.create');
+        Route::post('/store',[ExamNameController::class,'store'])->name('exam-name.store');
+        Route::get('/edit/{id}',[ExamNameController::class,'edit'])->name('exam-name.edit');
+        Route::post('/update/{id}',[ExamNameController::class,'update'])->name('exam-name.update');
+        Route::get('/delete/{id}',[ExamNameController::class,'delete'])->name('exam-name.delete');
+
+     });
 
      Route::prefix('student')->group(function(){
         Route::get('/view',[StudentController::class,'index'])->name('student.view');
@@ -128,6 +138,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
         Route::post('/update/{id}',[ExamSetupController::class,'update'])->name('exam.update');
         Route::get('/delete/{id}',[ExamSetupController::class,'delete'])->name('exam.delete');
      });
+
+
 
       Route::prefix('marks')->group(function(){
         Route::get('/mark-entry',[MarkEntryController::class,'add'])->name('mark-entry-show');
