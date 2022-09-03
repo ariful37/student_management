@@ -27,7 +27,8 @@ class DefaultController extends Controller
   public function progressReport(Request $request){
     $AyId = $request->AyId;
     $ClassId = $request->ClassId;
-    $allData = StudentMark::with('Student')->where('AyId',$AyId)->where('ClassId',$ClassId)->get();
+    $allData = StudentMark::with('student')->where('AyId',$AyId)->where('ClassId',$ClassId)->get();
+   // dd($allData);
        return view('backend.report._report',[
            'allData' => $allData
        ]);

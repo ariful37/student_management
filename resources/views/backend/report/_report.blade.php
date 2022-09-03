@@ -4,19 +4,22 @@
        <thead>
        <tr>
 
-         <th>Student ID</th>
-         <th>Student Roll</th>
          <th>Student Name</th>
+         <th>Student Roll</th>
+         <th>Student Phone</th>
          <th>Total Mark</th>
+         <th>Action</th>
        </tr>
        </thead>
        <tbody id="marks-entry-tr">
         @foreach ($allData as $item)
              <tr>
-
-                <td>{{ $item->StudentId }}</td>
-                <td>{{ $item->Student->RollNo }}</td>
-                <td>{{ $item->Student->StudentName}}</td>
+                <td>{{ $item->student->StudentName}}</td>
+                <td>{{ $item->student->RollNo}}</td>
+                <td>{{ $item->student->SmsNumber}}</td>
+                {{-- <td>{{ $item->student->SmsNumber}}</td> --}}
+                {{-- <td>{{ $item->student? $item->student->RollNo:''}}</td>
+                <td>{{ $item->student? $item->student->SmsNumber:''}}</td> --}}
                 <td>{{ $item->Subjective + $item->Objective}} Mark</td>
                 <td>
                     <a href="#" class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i></a>

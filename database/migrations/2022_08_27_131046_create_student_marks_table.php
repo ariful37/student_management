@@ -15,7 +15,7 @@ class CreateStudentMarksTable extends Migration
     {
         Schema::create('student_marks', function (Blueprint $table) {
             $table->id();
-            $table->integer('StudentId')->comment('StudentId = user_id');
+            $table->integer('StudentId')->nullable();
             $table->integer('AyId')->nullable();
             $table->integer('ClassId')->nullable();
             $table->integer('SubjectId')->nullable();
