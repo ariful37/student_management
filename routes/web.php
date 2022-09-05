@@ -5,7 +5,9 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\ExamSetupController;
 use App\Http\Controllers\Backend\SubjectController;
+use App\Http\Controllers\Backend\AssingSubjectController;
 use App\Http\Controllers\Backend\MarkEntryController;
+use App\Http\Controllers\Backend\GradeMarksController;
 use App\Http\Controllers\Backend\StudentController;
 use App\Http\Controllers\Backend\AcademicYearController;
 use App\Http\Controllers\Backend\GroupController;
@@ -51,18 +53,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
      });
 
-
-
-     Route::prefix('product')->group(function(){
-     Route::get('/view',[ProductController::class,'index'])->name('product.view');
-     Route::get('/create',[ProductController::class,'create'])->name('product.create');
-     Route::post('/store',[ProductController::class,'store'])->name('product.store');
-     Route::get('/edit/{id}',[ProductController::class,'edit'])->name('product.edit');
-     Route::post('/update/{id}',[ProductController::class,'update'])->name('product.update');
-     Route::get('/delete/{id}',[ProductController::class,'delete'])->name('product.delete');
-     });
-
-
      Route::prefix('subject')->group(function(){
         Route::get('/view',[SubjectController::class,'index'])->name('subject.view');
         Route::get('/create',[SubjectController::class,'create'])->name('subject.create');
@@ -70,7 +60,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
         Route::get('/edit/{id}',[SubjectController::class,'edit'])->name('subject.edit');
         Route::post('/update/{id}',[SubjectController::class,'update'])->name('subject.update');
         Route::get('/delete/{id}',[SubjectController::class,'delete'])->name('subject.delete');
+
+        // assing subject route
+        Route::get('assing/subject/view',[AssingSubjectController::class,'index'])->name('assing.subject.view');
+        Route::get('assing/subject/create',[AssingSubjectController::class,'create'])->name('assing.subject.create');
+        Route::post('assing/subject/store',[AssingSubjectController::class,'store'])->name('assing.subject.store');
+        Route::get('assing/subject/edit/{id}',[AssingSubjectController::class,'edit'])->name('assing.subject.edit');
+        Route::post('assing/subject/update/{id}',[AssingSubjectController::class,'update'])->name('assing.subject.update');
+        Route::get('assing/subject/delete/{id}',[AssingSubjectController::class,'delete'])->name('assing.subject.delete');
+
         });
+
 
     Route::prefix('year')->group(function(){
         Route::get('/view',[AcademicYearController::class,'index'])->name('year.view');
@@ -148,6 +148,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
         Route::get('/get-student-edit',[MarkEntryController::class,'getMarks'])->name('get-student-edit');
         Route::post('/get-marks-update',[MarkEntryController::class,'update'])->name('marks.update');
         Route::get('/get-student-report',[MarkEntryController::class,'getStudentReport'])->name('get-student-report');
+       //Grade marks
+        Route::get('grate-marks/view',[GradeMarksController::class,'index'])->name('grate.marks.view');
+        Route::get('grate-marks/create',[GradeMarksController::class,'create'])->name('grate.marks.create');
+        Route::post('grate-marks/store',[GradeMarksController::class,'store'])->name('grate.marks.store');
+        Route::get('grate-marks/edit/{id}',[GradeMarksController::class,'edit'])->name('grate.marks.edit');
+        Route::post('grate-marks/update/{id}',[GradeMarksController::class,'update'])->name('grate.marks.update');
+        Route::get('grate-marks/delete/{id}',[GradeMarksController::class,'delete'])->name('grate.marks.delete');
        });
 
      Route::get('/get-student',[DefaultController::class,'getStudent'])->name('get-student');

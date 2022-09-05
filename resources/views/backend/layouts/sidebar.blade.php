@@ -157,6 +157,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="{{route('assing.subject.view')}}" class="nav-link {{$route=='assing.subject.view'?'active':''}}">
+                    <i class="far fa-circle nav-icon text-info"></i>
+                    <p>Assing Subject</p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{route('mark-entry-show')}}" class="nav-link {{$route=='mark-entry-show'?'active':''}}">
                     <i class="far fa-circle nav-icon text-info"></i>
                     <p>Marks Entry</p>
@@ -166,6 +172,12 @@
                 <a href="{{route('marks.edit')}}" class="nav-link {{$route=='marks.edit'?'active':''}}">
                     <i class="far fa-circle nav-icon text-info"></i>
                     <p>Marks Edit</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('grate.marks.view')}}" class="nav-link {{$route=='grate.marks.view'?'active':''}}">
+                    <i class="far fa-circle nav-icon text-info"></i>
+                    <p>Grade Marks</p>
                 </a>
             </li>
               <li class="nav-item">
