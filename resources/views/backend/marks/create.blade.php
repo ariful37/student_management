@@ -61,7 +61,7 @@
                       </div>
                       <div class="col-3">
                         <label for="">Select Class</label>
-                          <select class="form-control ClassId" name="ClassId"  required>
+                          <select class="form-control ClassId" name="ClassId" id="ClassId"  required>
                             <option value="">Select Class</option>
                             @foreach($classes as $item)
                               <option value="{{$item->id}}">{{$item->class_name}}</option>
@@ -69,12 +69,10 @@
                           </select>
                       </div>
                       <div class="col-2">
-                        <label for="">Select Subject</label>
-                          <select class="form-control SubjectId" name="SubjectId" required>
-                            <option value="">Select Subject Name</option>
-                            @foreach($subject as $item)
-                              <option value="{{$item->id}}">{{$item->SubjectName}}</option>
-                            @endforeach
+                        <label for="">Select Assign Subject</label>
+                          <select class="form-control SubjectId" name="AssingSubjectId" id="AssingSubjectId" required>
+                            <option value="">Select Assing Subject Name</option>
+
                           </select>
                       </div>
                       <div class="col-2">
@@ -142,10 +140,6 @@
     </section>
     <!-- /.content -->
   </div>
-
-
-
-
 
   <!-- /.content-wrapper -->
   <!-- jQuery -->
@@ -217,10 +211,10 @@ $(document).ready(function () {
 
     var AyId = $('.AyId').val();
     var classId = $('.ClassId').val();
-    var SubjectId = $('.SubjectId').val();
+    var AssingSubjectId = $('.AssingSubjectId').val();
     var ExampNameId = $('.ExampNameId').val();
     let url = "{{ route('get-student') }}";
-    console.log(AyId);
+   // console.log(AyId);
   $.ajax({
     url :url,
     type :'get',
@@ -230,6 +224,27 @@ $(document).ready(function () {
     }
   });
   });
+</script>
+<script type="text/javascript">
+    $(function(){
+        $(document).on('change','#ClassId',function(e){
+            e.preventDefault(e);
+            var ClassId =$('#ClassId').val();
+            $.ajax({
+                url:"{{route('get-subject')}}",
+                type:"GET",
+                data:{ClassId:ClassId},
+                success:function(data){
+                   // console.log(data);
+                    var html = '<option value="">Select Subject</option>';
+                    $.each( data, function( key, v ) {
+                        html +='<option value="'+v.id+'">'+v.subject.SubjectName+'</option>';
+                    });
+                    $('#AssingSubjectId').html(html);
+                }
+            });
+        });
+    });
 </script>
 
   @endpush

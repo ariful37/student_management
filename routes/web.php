@@ -142,24 +142,29 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
       Route::prefix('marks')->group(function(){
-        Route::get('/mark-entry',[MarkEntryController::class,'add'])->name('mark-entry-show');
-        Route::post('/mark-entry',[MarkEntryController::class,'store'])->name('marks.store');
-        Route::get('/mark-edit',[MarkEntryController::class,'edit'])->name('marks.edit');
-        Route::get('/get-student-edit',[MarkEntryController::class,'getMarks'])->name('get-student-edit');
-        Route::post('/get-marks-update',[MarkEntryController::class,'update'])->name('marks.update');
-        Route::get('/get-student-report',[MarkEntryController::class,'getStudentReport'])->name('get-student-report');
-       //Grade marks
+        //Grade marks
         Route::get('grate-marks/view',[GradeMarksController::class,'index'])->name('grate.marks.view');
         Route::get('grate-marks/create',[GradeMarksController::class,'create'])->name('grate.marks.create');
         Route::post('grate-marks/store',[GradeMarksController::class,'store'])->name('grate.marks.store');
         Route::get('grate-marks/edit/{id}',[GradeMarksController::class,'edit'])->name('grate.marks.edit');
         Route::post('grate-marks/update/{id}',[GradeMarksController::class,'update'])->name('grate.marks.update');
         Route::get('grate-marks/delete/{id}',[GradeMarksController::class,'delete'])->name('grate.marks.delete');
+      //mark entry route
+        Route::get('/mark-entry',[MarkEntryController::class,'add'])->name('mark-entry-show');
+        Route::post('/mark-entry',[MarkEntryController::class,'store'])->name('marks.store');
+        Route::get('/mark-edit',[MarkEntryController::class,'edit'])->name('marks.edit');
+        Route::get('/get-student-edit',[MarkEntryController::class,'getMarks'])->name('get-student-edit');
+        Route::post('/get-marks-update',[MarkEntryController::class,'update'])->name('marks.update');
+        Route::get('/get-student-report',[MarkEntryController::class,'getStudentReport'])->name('get-student-report');
+        //marke sheet route
+        Route::get('/mark-sheet-view',[MarkEntryController::class,'markSheetView'])->name('mark.sheet.view');
+        Route::post('/mark-sheet-get',[MarkEntryController::class,'markSheetGet'])->name('marks.sheet.get');
+
        });
 
      Route::get('/get-student',[DefaultController::class,'getStudent'])->name('get-student');
+     Route::get('/get-subject',[DefaultController::class,'getSubject'])->name('get-subject');
      Route::get('/student-progress-report',[DefaultController::class,'progressReport'])->name('student-progress-report');
-
 
 
 

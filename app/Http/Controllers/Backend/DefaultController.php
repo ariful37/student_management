@@ -12,16 +12,22 @@ use App\Models\ExamName;
 use App\Models\Group;
 use App\Models\Subject;
 use App\Models\StudentMark;
+use App\Models\AssignSubject;
 class DefaultController extends Controller
 {
    public function getStudent(Request $request){
-    // dd($request->all());
      $AyId = $request->AyId;
      $ClassId = $request->ClassId;
      $allData = Student::where('AyId',$AyId)->where('ClassId',$ClassId)->get();
         return view('backend.marks._mark',[
             'allData' => $allData
         ]);
+    }
+
+    public function getSubject(Request $request){
+        $ClassId = $request->ClassId;
+    	$allData = AssignSubject::with('subject')->where('ClassId',$ClassId)->get();
+    	return response()->json($allData);
     }
 
   public function progressReport(Request $request){
@@ -33,4 +39,5 @@ class DefaultController extends Controller
            'allData' => $allData
        ]);
   }
+
 }

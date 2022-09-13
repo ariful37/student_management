@@ -16,4 +16,8 @@ class AssignSubject extends Model
         'pass_mark',
         'subjective_mark',
     ];
+
+    public function subject(){
+        return $this->belongsTo(Subject::class,'SubjectId','id');
+    }
 }

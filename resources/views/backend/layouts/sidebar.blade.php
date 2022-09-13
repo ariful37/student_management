@@ -192,6 +192,12 @@
                   <p>Student Report</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{route('mark.sheet.view')}}" class="nav-link {{$route=='mark.sheet.view'?'active':''}}">
+                  <i class="far fa-circle nav-icon text-info"></i>
+                  <p>Marksheet</p>
+                </a>
+              </li>
             </ul>
           </li>
 

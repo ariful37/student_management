@@ -12,6 +12,7 @@ class Student extends Model
         'AyId',
         'ClassId',
         'SectionId',
+        'id_no',
         'StudentName',
         'StudentCode',
         'RollNo',

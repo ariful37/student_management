@@ -16,7 +16,7 @@ class AssingSubjectController extends Controller
        return view('backend.assignSubject.create',$data);
     }
     public function store(Request $request){
-       $subjectCount = $request->SubjectId;
+      $subjectCount = count($request->SubjectId);
        if($subjectCount != NULL){
          for($i=0; $i<$subjectCount; $i++){
             $assign_sub = new AssignSubject();

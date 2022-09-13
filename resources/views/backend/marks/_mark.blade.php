@@ -17,6 +17,7 @@
              <tr>
 
                     <input type="hidden" name="StudentId[]" value="{{ $item->id }}">
+                    <input type="hidden" name="RollNo[]" value="{{ $item->RollNo }}">
 
                 <td>{{ $item->RollNo }}</td>
                 <td>{{ $item->ClassId }}</td>

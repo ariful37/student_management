@@ -10,16 +10,19 @@ use App\Models\Section;
 use App\Models\ExamName;
 use App\Models\Group;
 use App\Models\Subject;
+use App\Models\Student;
 use App\Models\StudentMark;
+use App\Models\AssignSubject;
+use App\Models\MarksGrades;
 class MarkEntryController extends Controller
 {
    public function add(){
     $data['academicYear'] = AcademicYear::all();
     $data['classes'] = Classes::all();
-    $data['section'] = Section::all();
+   // $data['section'] = Section::all();
     $data['examType'] = ExamName::all();
-    $data['group'] = Group::all();
-    $data['subject'] = Subject::all();
+    //$data['group'] = Group::all();
+    $data['subject'] = AssignSubject::all();
    // $data['courseName'] = CourseName::all();
      return view('backend.marks.create',$data);
    }
@@ -40,16 +43,17 @@ class MarkEntryController extends Controller
             $studentMark = new StudentMark();
             $studentMark->AyId = $request->AyId;
             $studentMark->ClassId = $request->ClassId;
-            $studentMark->SubjectId = $request->SubjectId;
+            $studentMark->AssingSubjectId = $request->AssingSubjectId;
             $studentMark->ExampNameId = $request->ExampNameId;
             $studentMark->StudentId = $request->StudentId[$i];
+            $studentMark->RollNo = $request->RollNo[$i];
             $studentMark->Subjective = $request->Subjective[$i];
             $studentMark->Objective = $request->Objective[$i];
+           // dd($studentMark);
             $studentMark->save();
        }
        return redirect()->route('mark-entry-show')->with('success','Data Insert successfully');
      }
-
 
    }
 
@@ -111,5 +115,27 @@ class MarkEntryController extends Controller
 
         return redirect()->route('marks.edit')->with('success','Data Update successfully');
       }
+  }
+
+  public function markSheetView(){
+
+    $data['academicYear'] = AcademicYear::all();
+    $data['classes'] = Classes::all();
+    $data['examType'] = ExamName::all();
+    return view('backend.report.marke_sheet',$data);
+  }
+  public function markSheetGet(Request $request){
+        $AyId = $request->AyId;
+        $ClassId = $request->ClassId;
+        $ExampNameId = $request->ExampNameId;
+        $RollNo = $request->RollNo;
+        $count_fall = StudentMark::where('AyId',$AyId)->where('ClassId',$ClassId)->where('RollNo',$RollNo)->where('ExampNameId',$ExampNameId)->where('Subjective','<','33')->get()->count();
+        $singleStudent = StudentMark::where('AyId',$AyId)->where('ClassId',$ClassId)->where('RollNo',$RollNo)->where('ExampNameId',$ExampNameId)->first();
+        if($singleStudent == true){
+           $allStudentMark = StudentMark::with('assing_subject','year')->where('AyId',$AyId)->where('ClassId',$ClassId)->where('RollNo',$RollNo)->where('ExampNameId',$ExampNameId)->where('RollNo',$RollNo)->get();
+          $studentGradeMark = MarksGrades::all();
+          $assingStudent = Student::where('AyId',$AyId)->where('ClassId',$ClassId)->first();
+          return view('backend.marks.student_mark_sheet',compact('studentGradeMark','allStudentMark','count_fall','assingStudent'));
+        }
   }
 }

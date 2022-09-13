@@ -11,9 +11,10 @@ class StudentMark extends Model
     protected $fillable = [
         'AyId',
         'ClassId',
-        'SubjectId',
+        'AssingSubjectId',
         'ExampNameId',
         'StudentId',
+        'RollNo',
         'Subjective',
         'Objective',
         'Obtained',
@@ -35,6 +36,9 @@ class StudentMark extends Model
     }
     public function student(){
         return $this->belongsTo(Student::class,'StudentId','id');
+    }
+    public function assing_subject(){
+        return $this->belongsTo(AssignSubject::class,'AssingSubjectId','id');
     }
 
 }

@@ -20,6 +20,7 @@ class CreateStudentMarksTable extends Migration
             $table->integer('ClassId')->nullable();
             $table->integer('SubjectId')->nullable();
             $table->integer('ExampNameId')->nullable();
+            $table->integer('RollNo')->nullable();
             $table->double('Subjective')->nullable();
             $table->double('Objective')->nullable();
             $table->double('Obtained')->nullable();
